@@ -1,3 +1,4 @@
+//by Dimitris Livas
 import _ from "lodash"
 
 // Example implementation used in the Think Functional course
