@@ -15,4 +15,6 @@ const render = () => {
 }
 
 store.subscribe(render);
-store.dispatch({type:'newCards'});
+store.dispatch({type:'newCards'});  //no render because state inisializes for first time with the dispatch
+
+//actioncreator
