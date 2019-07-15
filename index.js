@@ -2,14 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './lib/css/cards.css';
 import './lib/css/index.css';
-import {Game} from './lib/components/Game.js'
-import {store} from './lib/myStore.js'
+import {Game} from './lib/components/Game.js';
+import {store} from './lib/myStore.js';
+import { Provider } from 'react-redux';
 
 //===========================================
 
 const render = () => {
   ReactDOM.render(
-    <Game store={store}/>,
+    <Provider store={store}>
+        <Game store={store}/>
+    </Provider>,
     document.getElementById('root')
   );
 }
