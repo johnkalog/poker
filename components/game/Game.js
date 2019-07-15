@@ -1,6 +1,6 @@
 import React from 'react';
-import {PlayerContainer} from './Player.js'
-import {determineWinner} from '../comparison.js'
+import Player from './player';  //gia auto index
+import {determineWinner } from '../../lib/comparison';
 import { connect } from 'react-redux';
 
 export const Game = ({ player1, player2, onNewClick}) => {
@@ -12,15 +12,15 @@ export const Game = ({ player1, player2, onNewClick}) => {
         New Game
       </button>
       <div className="twoHands">
-        <PlayerContainer id={1}/>
+        <Player id={1}/>
         <div className="winner">{message}</div>
-        <PlayerContainer id={2}/>
+        <Player id={2}/>
       </div>
     </div>
   );
 }
 
-export const GameContainer = connect(
+export default connect(
     state => ({
       player1: state.player1,
       player2: state.player2

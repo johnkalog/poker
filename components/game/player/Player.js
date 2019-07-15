@@ -1,7 +1,7 @@
 import React from 'react';
-import {CardContainer} from './Card.js'
 import { connect } from 'react-redux';
-
+import Card from './card/Card'; //ta . sto telos
+import './player.css';
 
 export const Player = ({cards, id, comb }) =>
   (<div className="playingCards simpleCards rotateHand">
@@ -14,7 +14,7 @@ export const Player = ({cards, id, comb }) =>
       </div>
       {cards.map( (el, index) =>  //poia dunstions sto dispatch
         <li key={index}>
-          <CardContainer player={id} el={el}/>
+          <Card player={id} el={el}/>
         </li>
       )}
       <button className="change">
@@ -24,7 +24,7 @@ export const Player = ({cards, id, comb }) =>
   </div>
 );
 
-export const PlayerContainer = connect(
+export default connect(
     (state,ownProps) => {
       return ownProps.id===1
       ?

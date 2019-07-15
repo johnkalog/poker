@@ -18,14 +18,6 @@ body {
   box-shadow:         inset 0 0 37px #e6ffff;
 }
 
-.playingCards ul.table{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 189px;
-  margin-right: 47px;
-}
-
 .id {
   font-size: 16px;
   color: white;

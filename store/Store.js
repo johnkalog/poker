@@ -1,11 +1,8 @@
-import {PlayingCards,PokerHandRate} from './ratings.js';
-import { createStore } from 'redux';
+import {PlayingCards,PokerHandRate} from '../lib/ratings.js';
 import { combineReducers } from 'redux';
 import _ from "lodash"
 
-export const store = createStore(changeCards, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
- function changeCards(state = {}, action){
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case 'newCards':
       const deck = new PlayingCards();
@@ -50,3 +47,5 @@ export const store = createStore(changeCards, window.__REDUX_DEVTOOLS_EXTENSION_
       return state;
   }
 }
+
+export default reducer;

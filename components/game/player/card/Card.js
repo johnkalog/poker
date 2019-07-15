@@ -1,25 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {getEntity} from '../reactFunctions.js';
-//
+import { getEntity } from '../../../../lib/reactFunctions';  //oxi sto idio epipedo onoma mono tote h katalhjh
+import './card.css';
 
 export const Card = ({player,rank,suit,id,check,entity,onCardClick}) =>  {//{props.entity} px &spades;
   return check
     ?
-    (<label for="c-2D" className={`card rank-${rank} ${suit}`}>
+    (<label htmlFor="c-2D" className={`card rank-${rank} ${suit}`}>
       <span className="rank">{rank}</span>
       <span className="suit">{entity}</span>
       <input type="checkbox" name="c-2D" id="c-2D" value="select" checked onClick={()=> onCardClick(player,id)}/>
     </label>)
     :
-    (<label for="c-2D" className={`card rank-${rank} ${suit}`}>
+    (<label htmlFor="c-2D" className={`card rank-${rank} ${suit}`}>
       <span className="rank">{rank}</span>
       <span className="suit">{entity}</span>
       <input type="checkbox" name="c-2D" id="c-2D" value="select" onClick={()=> onCardClick(player,id)}/>
     </label>)
 }
 
-export const CardContainer = connect(
+export default connect(
   (state,ownProps) => (
     { player: ownProps.player,
       rank: ownProps.el.rank,
