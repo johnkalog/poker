@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { getEntity } from '../../../../lib/reactFunctions';  //oxi sto idio epipedo onoma mono tote h katalhjh
 import './cards.css';
 
-export const Card = ({hand,rank,suit,id,check,entity,onCardClick}) =>  {//{props.entity} px &spades;
-  return check
+export const Card = ({hand,rank,suit,id,toggled,entity,onCardClick}) =>  {//{props.entity} px &spades;
+  return toggled
     ?
     (<label htmlFor="c-2D" className={`card rank-${rank} ${suit}`}>
       <span className="rank">{rank}</span>
@@ -25,7 +25,7 @@ export default connect(
       rank: ownProps.el.rank,
       suit: ownProps.el.suit,
       id: ownProps.el.id,
-      check: ownProps.el.check,
+      toggled: ownProps.el.toggled,
       entity: getEntity(ownProps.el.suit),
     }
   ),

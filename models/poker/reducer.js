@@ -29,22 +29,21 @@ const reducer = (state = {}, action) => {
         rest
       }
     case 'toggleCard':
-    return state;
-      // return ? {
-      //   ...state,
-      //   hand1: {
-      //     ...state.hand1,
-      //     cards: state.hand1.cards.map( el => { return { ...el,toggled:true}} )
-      //   }
-      // }
-      // :
-      // {
-      //   ...state,
-      //   hand2: {
-      //     ...state.hand2,
-      //     cards: state.hand2.cards.map( el => { return { ...el,toggled:true}} )
-      //   }
-      // }
+      return action.payload.hand===1 ? {
+        ...state,
+        hand1: {
+          ...state.hand1,
+          cards: state.hand1.cards.map( el => { if ( el.id===action.payload.id ) return { ...el,toggled:!el.toggled}; else  return el;} )
+        }
+      }
+      :
+      {
+        ...state,
+        hand2: {
+          ...state.hand2,
+          cards: state.hand2.cards.map( el => { if ( el.id===action.payload.id ) return { ...el,toggled:!el.toogled}; else  return el;} )
+        }
+      }
     default:
       return state;
   }
