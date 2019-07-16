@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getEntity } from '../../../../lib/reactFunctions';  //oxi sto idio epipedo onoma mono tote h katalhjh
-import './card.css';
+import './cards.css';
 
 export const Card = ({hand,rank,suit,id,check,entity,onCardClick}) =>  {//{props.entity} px &spades;
   return check

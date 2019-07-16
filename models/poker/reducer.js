@@ -1,6 +1,7 @@
 import {PlayingCards,PokerHandRate} from '../../lib/ratings.js';
 import { combineReducers } from 'redux';
-import _ from "lodash"
+import _ from "lodash";
+import { getNCardsAndRest } from '../../lib/ratings.js';
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
@@ -9,12 +10,12 @@ const reducer = (state = {}, action) => {
       const {
         cards: hand1,
         restCards
-      } = deck.getNCardsAndRest(5,0);
+      } = getNCardsAndRest(deck,5,0);
       // console.log
       const {
         cards: hand2,
         restCards: rest
-      } = restCards.getNCardsAndRest(5,0);
+      } = getNCardsAndRest(restCards,5,0);
       const [combination1, combination2] = [PokerHandRate(hand1), PokerHandRate(hand2)];
       const counter1 = 0;
       const counter2 = 0;
@@ -28,19 +29,20 @@ const reducer = (state = {}, action) => {
         rest
       }
     case 'toggleCard':
-      // return 1===1
-      // ?
-      // const copy = _.clone(state);
-      // copy.hand1.cards = copy.hand1.cards.map( el => { return { ...el,toggled: true} });
-      // console.log(copy);
-      return state;
-      // return state;
+    return state;
+      // return ? {
+      //   ...state,
+      //   hand1: {
+      //     ...state.hand1,
+      //     cards: state.hand1.cards.map( el => { return { ...el,toggled:true}} )
+      //   }
+      // }
       // :
       // {
       //   ...state,
       //   hand2: {
       //     ...state.hand2,
-      //     cards: state.hand2.cards.map( el => { if ( el.id===action.id ) return { ...el,toggled:true}} )
+      //     cards: state.hand2.cards.map( el => { return { ...el,toggled:true}} )
       //   }
       // }
     default:
