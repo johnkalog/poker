@@ -1,51 +1,6 @@
-import {PlayingCards,PokerHandRate} from '../lib/ratings.js';
-import { combineReducers } from 'redux';
-import _ from "lodash"
+import { createStore } from 'redux';
+import reducer from "../models/poker/reducer";
 
-const reducer = (state = {}, action) => {
-  switch (action.type) {
-    case 'newCards':
-      const deck = new PlayingCards();
-      const {
-        cards: player1,
-        restCards
-      } = deck.getNCardsAndRest(5,0);
-      // console.log
-      const {
-        cards: player2,
-        restCards: rest
-      } = restCards.getNCardsAndRest(5,0);
-      const [combination1, combination2] = [PokerHandRate(player1), PokerHandRate(player2)];
-      const counter1 = 0;
-      const counter2 = 0;
-      return {
-        player1,
-        combination1,
-        counter1, //to check if over 3 for change
-        player2,
-        combination2,
-        counter2,
-        rest
-      }
-    case 'toggleCard':
-      // return 1===1
-      // ?
-      // const copy = _.clone(state);
-      // copy.player1.cards = copy.player1.cards.map( el => { return { ...el,toggled: true} });
-      // console.log(copy);
-      return state;
-      // return state;
-      // :
-      // {
-      //   ...state,
-      //   player2: {
-      //     ...state.player2,
-      //     cards: state.player2.cards.map( el => { if ( el.id===action.id ) return { ...el,toggled:true}} )
-      //   }
-      // }
-    default:
-      return state;
-  }
-}
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-export default reducer;
+export default store;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Card from './card/Card'; //ta . sto telos
-import './player.css';
+import './hand.css';
 
-export const Player = ({cards, id, comb }) =>
+export const Hand = ({cards, id, comb }) =>
   (<div className="playingCards simpleCards rotateHand">
     <ul className="table">
       <div className="rate">
@@ -14,7 +14,7 @@ export const Player = ({cards, id, comb }) =>
       </div>
       {cards.map( (el, index) =>  //poia dunstions sto dispatch
         <li key={index}>
-          <Card player={id} el={el}/>
+          <Card hand={id} el={el}/>
         </li>
       )}
       <button className="change">
@@ -30,15 +30,15 @@ export default connect(
       ?
       {
         id: ownProps.id,
-        cards: state.player1.cards,
+        cards: state.hand1.cards,
         comb: state.combination1
       }
       :
       {
         id: ownProps.id,
-        cards: state.player2.cards,
+        cards: state.hand2.cards,
         comb: state.combination2
       }
     },
     null
-  )(Player);
+  )(Hand);

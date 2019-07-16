@@ -1,10 +1,11 @@
 import React from 'react';
-import Player from './player';  //gia auto index
+import Hand from './hand';  //gia auto index
 import {determineWinner } from '../../lib/comparison';
 import { connect } from 'react-redux';
+import "./game.css";
 
-export const Game = ({ player1, player2, onNewClick}) => {
-  const winner = determineWinner(player1,player2);
+export const Game = ({ hand1, hand2, onNewClick}) => {
+  const winner = determineWinner(hand1,hand2);
   const message = winner ? `Winner is ${winner}!` : 'Draw!';
   return (
     <div>
@@ -12,9 +13,9 @@ export const Game = ({ player1, player2, onNewClick}) => {
         New Game
       </button>
       <div className="twoHands">
-        <Player id={1}/>
+        <Hand id={1}/>
         <div className="winner">{message}</div>
-        <Player id={2}/>
+        <Hand id={2}/>
       </div>
     </div>
   );
@@ -22,8 +23,8 @@ export const Game = ({ player1, player2, onNewClick}) => {
 
 export default connect(
     state => ({
-      player1: state.player1,
-      player2: state.player2
+      hand1: state.hand1,
+      hand2: state.hand2
     }),
     dispatch => ({
       onNewClick: () => { dispatch({type:'newCards'}) }

@@ -1,0 +1,46 @@
+.playingCards ul.table{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 189px;
+  margin-right: 47px;
+}
+
+.playingCards {
+  margin-left: 258px;
+}
+
+.comb {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 19px;
+  color: white;
+}
+
+.id {
+  font-size: 16px;
+  color: white;
+  white-space: pre;
+}
+
+.rate {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 19px;
+  color: white;
+}
+
+.change {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  border-color: white;
+  border-radius: 39%;
+  background-color: Transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 162px;
+  margin-top: 30px;
+  cursor: pointer;
+  outline:none;
+}

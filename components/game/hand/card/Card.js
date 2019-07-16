@@ -3,25 +3,25 @@ import { connect } from 'react-redux';
 import { getEntity } from '../../../../lib/reactFunctions';  //oxi sto idio epipedo onoma mono tote h katalhjh
 import './card.css';
 
-export const Card = ({player,rank,suit,id,check,entity,onCardClick}) =>  {//{props.entity} px &spades;
+export const Card = ({hand,rank,suit,id,check,entity,onCardClick}) =>  {//{props.entity} px &spades;
   return check
     ?
     (<label htmlFor="c-2D" className={`card rank-${rank} ${suit}`}>
       <span className="rank">{rank}</span>
       <span className="suit">{entity}</span>
-      <input type="checkbox" name="c-2D" id="c-2D" value="select" checked onClick={()=> onCardClick(player,id)}/>
+      <input type="checkbox" name="c-2D" id="c-2D" value="select" checked onClick={()=> onCardClick(hand,id)}/>
     </label>)
     :
     (<label htmlFor="c-2D" className={`card rank-${rank} ${suit}`}>
       <span className="rank">{rank}</span>
       <span className="suit">{entity}</span>
-      <input type="checkbox" name="c-2D" id="c-2D" value="select" onClick={()=> onCardClick(player,id)}/>
+      <input type="checkbox" name="c-2D" id="c-2D" value="select" onClick={()=> onCardClick(hand,id)}/>
     </label>)
 }
 
 export default connect(
   (state,ownProps) => (
-    { player: ownProps.player,
+    { hand: ownProps.hand,
       rank: ownProps.el.rank,
       suit: ownProps.el.suit,
       id: ownProps.el.id,
@@ -30,10 +30,10 @@ export default connect(
     }
   ),
   dispatch => ({  //h apo props
-    onCardClick: (player, id) => {
+    onCardClick: (hand, id) => {
       dispatch({type:'toggleCard',
                       payload: {
-                        player: player,
+                        hand: hand,
                         id: id
                       }
                     });
