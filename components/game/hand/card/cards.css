@@ -10,7 +10,7 @@
 /* card itself
 ********************************************************************/
 
-.playingCards .card {
+ .playingCards .card {
     display: inline-block;
     width: 3.3em;
     height: 4.6em;

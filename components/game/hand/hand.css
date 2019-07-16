@@ -1,4 +1,4 @@
-.playingCards ul.table{
+.playingCards ul.table {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@
 }
 
 .comb {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
   font-size: 19px;
   color: white;
 }
@@ -29,7 +29,7 @@
 }
 
 .change {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
   border-color: white;
   border-radius: 39%;
   background-color: Transparent;
@@ -42,5 +42,5 @@
   margin-left: 162px;
   margin-top: 30px;
   cursor: pointer;
-  outline:none;
+  outline: none;
 }

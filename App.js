@@ -5,16 +5,16 @@ import './css/index.css';
 import Game from './components/game';
 import store from './store';
 
-//===========================================
+//= ==========================================
 
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-        <Game />
+      <Game />
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
-}
+};
 
 store.subscribe(render);
-store.dispatch({type:'newCards'});  //no render because state inisializes for first time with the dispatch
+store.dispatch({ type: 'NEW_CARDS' }); // no render because state inisializes for first time with the dispatch
