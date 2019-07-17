@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import _ from 'lodash';
 import { PlayingCards, PokerHandRate, getNCardsAndRest } from '../../lib/ratings.js';
-import { newCards, toggleCard } from './';
+import { newCards, toggleCard, changeCards } from '.';
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
@@ -23,6 +23,7 @@ const reducer = (state = {}, action) => {
       };
     case toggleCard.type:
       // const { hand, id } = toggleCard().payload;  gia apofygh tou toggleCard().paylod polles fores
+      console.log(action.payload.id);
       return action.payload.hand === 1
         ? {
           ...state,
@@ -39,11 +40,22 @@ const reducer = (state = {}, action) => {
           hand2: {
             ...state.hand2,
             cards: state.hand2.cards.map((el) => {
-              if (el.id === action.payload.id) return { ...el, toggled: !el.toogled };
+              if (el.id === action.payload.id) return { ...el, toggled: !el.toggled };
               return el;
             }),
           },
         };
+    case changeCards.type:
+      let counter = 0;
+      action.payload.id === 1
+        ? state.hand1.cards.forEach((el) => {
+          if (el.toggled === true) counter++;
+        })
+        : state.hand2.cards.forEach((el) => {
+          if (el.toggled === true) counter++;
+        });
+      console.log(counter);
+      return state;
     default:
       return state;
   }

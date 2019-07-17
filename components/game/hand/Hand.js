@@ -2,9 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Card from './card/index'; // ta . sto telos
 import './hand.css';
-import { cards, comb } from '../../../models/poker';
+import { cards, comb, onChangeClick } from '../../../models/poker';
 
-export const Hand = ({ cards, id, comb }) => (
+
+export const Hand = ({
+  cards, id, comb, onChangeClick,
+}) => (
   <div className="playingCards simpleCards rotateHand">
     <ul className="table">
       <div className="rate">{comb}</div>
@@ -21,7 +24,9 @@ export const Hand = ({ cards, id, comb }) => (
           <Card hand={id} el={el} />
         </li>
       ))}
-      <button className="change">Change</button>
+      <button className="change" onClick={() => onChangeClick(id)}>
+        Change
+      </button>
     </ul>
   </div>
 );
@@ -32,5 +37,7 @@ export default connect(
     ...cards(state, ownProps),
     ...comb(state, ownProps),
   }),
-  null,
+  dispatch => ({
+    ...onChangeClick(dispatch),
+  }),
 )(Hand);

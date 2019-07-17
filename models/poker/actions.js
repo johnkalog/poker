@@ -3,6 +3,7 @@
 const NEW_CARDS = 'NEW_CARDS';
 
 const newCards = () => ({
+  // type gia na elegxoume oxi apo action
   type: 'NEW_CARDS',
 });
 
@@ -20,4 +21,15 @@ const toggleCard = (hand, id) => ({
 
 toggleCard.type = TOGGLE_CARD;
 
-export { newCards, toggleCard };
+const CHANGE_CARDS = 'CHANGE_CARDS';
+
+const changeCards = id => ({
+  type: 'CHANGE_CARDS',
+  payload: {
+    id,
+  },
+});
+
+changeCards.type = 'CHANGE_CARDS';
+
+export { newCards, toggleCard, changeCards };

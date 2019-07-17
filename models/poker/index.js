@@ -1,11 +1,11 @@
-import { newCards, toggleCard } from './actions';
-import { onNewClick, onCardClick } from './dispatchHandlers';
+import { newCards, toggleCard, changeCards } from './actions';
+import { onNewClick, onCardClick, onChangeClick } from './dispatchHandlers';
 import {
   hand1, hand2, cards, comb,
 } from './selectors';
 
-export { newCards, toggleCard };
-export { onNewClick, onCardClick };
+export { newCards, toggleCard, changeCards };
+export { onNewClick, onCardClick, onChangeClick };
 export {
   hand1, hand2, cards, comb,
 };
