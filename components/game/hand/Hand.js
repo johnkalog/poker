@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Card from './card/Card'; // ta . sto telos
+import Card from './card/index'; // ta . sto telos
 import './hand.css';
+import { cards, comb } from '../../../models/poker';
 
 export const Hand = ({ cards, id, comb }) => (
   <div className="playingCards simpleCards rotateHand">
@@ -26,16 +27,10 @@ export const Hand = ({ cards, id, comb }) => (
 );
 
 export default connect(
-  (state, ownProps) => (ownProps.id === 1
-    ? {
-      id: ownProps.id,
-      cards: state.hand1.cards,
-      comb: state.combination1,
-    }
-    : {
-      id: ownProps.id,
-      cards: state.hand2.cards,
-      comb: state.combination2,
-    }),
+  (state, ownProps) => ({
+    id: ownProps.id,
+    ...cards(state, ownProps),
+    ...comb(state, ownProps),
+  }),
   null,
 )(Hand);

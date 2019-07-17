@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import _ from 'lodash';
 import { PlayingCards, PokerHandRate, getNCardsAndRest } from '../../lib/ratings.js';
-import { newCards, toggleCard } from './actions';
+import { newCards, toggleCard } from './';
 
 const reducer = (state = {}, action) => {
   switch (action.type) {

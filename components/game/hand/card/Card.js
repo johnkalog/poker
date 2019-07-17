@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getEntity } from '../../../../lib/reactFunctions'; // oxi sto idio epipedo onoma mono tote h katalhjh
 import './cards.css';
-import { onCardClick } from '../../../../models/poker/dispatchHandlers';
+import { onCardClick } from '../../../../models/poker';
 
 export const Card = (
   {
@@ -42,7 +42,7 @@ export default connect(
     id: ownProps.el.id,
     toggled: ownProps.el.toggled,
     entity: getEntity(ownProps.el.suit),
-  }),
+  }), // apla prenoun ta props sto paidi tou
   dispatch => ({
     // h apo props
     ...onCardClick(dispatch),

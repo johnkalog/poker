@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Hand from './hand'; // gia auto index
+import Hand from './hand/index'; // gia auto index
 import { determineWinner } from '../../lib/comparison';
 import './game.css';
 import { onNewClick } from '../../models/poker/dispatchHandlers';
+import { hand1,hand2 } from '../../models/poker';
 
 export const Game = ({ hand1, hand2, onNewClick }) => {
   const winner = determineWinner(hand1, hand2);
@@ -24,8 +25,8 @@ export const Game = ({ hand1, hand2, onNewClick }) => {
 
 export default connect(
   state => ({
-    hand1: state.hand1,
-    hand2: state.hand2,
+    ...hand1(state),
+    ...hand2(state)
   }),
   dispatch => ({
     ...onNewClick(dispatch),
