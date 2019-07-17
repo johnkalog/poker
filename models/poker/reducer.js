@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 import _ from 'lodash';
 import { PlayingCards, PokerHandRate, getNCardsAndRest } from '../../lib/ratings.js';
+import { newCards, toggleCard } from './actions';
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case 'NEW_CARDS':
+    case newCards.type:
       const deck = new PlayingCards();
       const { cards: hand1, restCards } = getNCardsAndRest(deck, 5, 0);
       const { cards: hand2, restCards: rest } = getNCardsAndRest(restCards, 5, 0);
@@ -20,14 +21,15 @@ const reducer = (state = {}, action) => {
         counter2,
         rest,
       };
-    case 'TOGGLE_CARD':
-      return action.payload.hand === 1
+    case toggleCard.type:
+      const { hand, id } = toggleCard().payload;  //gia apofygh tou toggleCard().paylod polles fores
+      return hand === 1
         ? {
           ...state,
           hand1: {
             ...state.hand1,
             cards: state.hand1.cards.map((el) => {
-              if (el.id === action.payload.id) return { ...el, toggled: !el.toggled };
+              if (el.id === id) return { ...el, toggled: !el.toggled };
               return el;
             }),
           },
@@ -37,7 +39,7 @@ const reducer = (state = {}, action) => {
           hand2: {
             ...state.hand2,
             cards: state.hand2.cards.map((el) => {
-              if (el.id === action.payload.id) return { ...el, toggled: !el.toogled };
+              if (el.id === id) return { ...el, toggled: !el.toogled };
               return el;
             }),
           },
