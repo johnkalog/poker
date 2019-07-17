@@ -22,14 +22,14 @@ const reducer = (state = {}, action) => {
         rest,
       };
     case toggleCard.type:
-      const { hand, id } = toggleCard().payload;  //gia apofygh tou toggleCard().paylod polles fores
-      return hand === 1
+      // const { hand, id } = toggleCard().payload;  gia apofygh tou toggleCard().paylod polles fores
+      return action.payload.hand === 1
         ? {
           ...state,
           hand1: {
             ...state.hand1,
             cards: state.hand1.cards.map((el) => {
-              if (el.id === id) return { ...el, toggled: !el.toggled };
+              if (el.id === action.payload.id) return { ...el, toggled: !el.toggled };
               return el;
             }),
           },
@@ -39,7 +39,7 @@ const reducer = (state = {}, action) => {
           hand2: {
             ...state.hand2,
             cards: state.hand2.cards.map((el) => {
-              if (el.id === id) return { ...el, toggled: !el.toogled };
+              if (el.id === action.payload.id) return { ...el, toggled: !el.toogled };
               return el;
             }),
           },

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getEntity } from '../../../../lib/reactFunctions'; // oxi sto idio epipedo onoma mono tote h katalhjh
 import './cards.css';
+import { onCardClick } from '../../../../models/poker/dispatchHandlers';
 
 export const Card = (
   {
@@ -44,14 +45,6 @@ export default connect(
   }),
   dispatch => ({
     // h apo props
-    onCardClick: (hand, id) => {
-      dispatch({
-        type: 'TOGGLE_CARD',
-        payload: {
-          hand,
-          id,
-        },
-      });
-    },
+    ...onCardClick(dispatch),
   }),
 )(Card);

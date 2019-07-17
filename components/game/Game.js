@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Hand from './hand'; // gia auto index
 import { determineWinner } from '../../lib/comparison';
 import './game.css';
+import { onNewClick } from '../../models/poker/dispatchHandlers';
 
 export const Game = ({ hand1, hand2, onNewClick }) => {
   const winner = determineWinner(hand1, hand2);
@@ -27,8 +28,6 @@ export default connect(
     hand2: state.hand2,
   }),
   dispatch => ({
-    onNewClick: () => {
-      dispatch({ type: 'NEW_CARDS' });
-    },
+    ...onNewClick(dispatch),
   }),
 )(Game);
