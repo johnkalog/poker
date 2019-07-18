@@ -54,14 +54,22 @@ const reducer = (state = {}, action) => {
         state.hand2.cards.forEach((el) => {
           if (el.toggled === true) state.counter2++;
         }));
-      action.payload.id === 1
-        ? state.counter1 === 0
-          ? alert('Select at max 3 cards to change 1')
-          : alert('Player1 cards changed')
-        : state.counter2 === 0
-          ? alert('Select at max 3 cards to change 2')
-          : alert('Player2 cards changed');
-      changeSelected(state, action.payload.id);
+      const r = 1;
+      if (action.payload.id === 1) {
+        if (state.counter1 === 0) alert('Select at max 3 cards to change 1');
+        else if (state.counter1 > 3) alert(`You selected ${state.counter1} cards.Please select max 3 1`);
+        else {
+          alert('Player1 cards changed');
+          return changeSelected(state, action.payload.id);
+        }
+      } else if (state.counter2 === 0) alert('Select at max 3 cards to change 2');
+      else if (state.counter2 > 3) alert(`You selected ${state.counter2} cards.Please select max 3 2`);
+      else {
+        alert('Player2 cards changed');
+        return changeSelected(state, action.payload.id);
+      }
+      console.log(state.rest);
+      // action.payload.id===1 ?  state.counter1<=3 ? return changeSelected(state, action.payload.id) : return changeSelected(state, action.payload.id);
       return state;
     default:
       return state;
@@ -72,6 +80,33 @@ export default reducer;
 
 const changeSelected = (state, id) => {
   const counter = id === 1 ? state.counter1 : state.counter2;
-  console.log(counter);
-  // const { cards: hand1, restCards } = getNCardsAndRest(deck, 5, 0);
+  const { cards: hand, restCards } = getNCardsAndRest(state.rest, counter, 0);
+  const arr = [...hand.cards]; // because of deepFreze
+  const newHand = id === 1
+    ? new PlayingCards(state.hand1.cards.map(el => (el.toggled ? { ...arr.pop() } : { ...el })))
+    : new PlayingCards(state.hand2.cards.map(el => (el.toggled ? { ...arr.pop() } : { ...el })));
+  const newCombination = PokerHandRate(newHand);
+  return id === 1
+    ? {
+      ...state,
+      hand1: newHand,
+      combination1: newCombination,
+      counter1: 0,
+      rest: {
+        ...restCards,
+      },
+    }
+    : {
+      ...state,
+      hand2: newHand,
+      combination2: newCombination,
+      counter2: 0,
+      rest: {
+        ...restCards,
+      },
+    };
 };
+
+// mhn afhnei kai allo change
+// if se ?
+// random

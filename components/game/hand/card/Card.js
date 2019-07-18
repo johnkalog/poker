@@ -8,7 +8,9 @@ export const Card = (
   {
     hand, rank, suit, id, toggled, entity, onCardClick,
   }, // {props.entity} px &spades;
-) => (
+) => (hand === 1 ? (
+  <div className="card back">*</div>
+) : (
   <label htmlFor="c-2D" className={`card rank-${rank} ${suit}`}>
     <span className="rank">{rank}</span>
     <span className="suit">{entity}</span>
@@ -19,10 +21,9 @@ export const Card = (
       value="select"
       checked={toggled}
       onChange={() => onCardClick(hand, id)}
-      // onClick={() => onCardClick(hand, id)}
     />
   </label>
-);
+));
 
 export default connect(
   (state, ownProps) => ({
