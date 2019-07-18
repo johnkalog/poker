@@ -5,7 +5,7 @@ import './css/index.css';
 import Game from './components/game/index';
 import store from './store';
 
-//===========================================
+//= ==========================================
 
 const render = () => {
   ReactDOM.render(

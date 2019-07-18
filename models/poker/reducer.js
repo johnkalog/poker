@@ -23,7 +23,6 @@ const reducer = (state = {}, action) => {
       };
     case toggleCard.type:
       // const { hand, id } = toggleCard().payload;  gia apofygh tou toggleCard().paylod polles fores
-      console.log(action.payload.id);
       return action.payload.hand === 1
         ? {
           ...state,
@@ -46,15 +45,23 @@ const reducer = (state = {}, action) => {
           },
         };
     case changeCards.type:
-      let counter = 0;
       action.payload.id === 1
-        ? state.hand1.cards.forEach((el) => {
-          if (el.toggled === true) counter++;
-        })
-        : state.hand2.cards.forEach((el) => {
-          if (el.toggled === true) counter++;
-        });
-      console.log(counter);
+        ? ((state.counter1 = 0),
+        state.hand1.cards.forEach((el) => {
+          if (el.toggled === true) state.counter1++;
+        }))
+        : ((state.counter2 = 0),
+        state.hand2.cards.forEach((el) => {
+          if (el.toggled === true) state.counter2++;
+        }));
+      action.payload.id === 1
+        ? state.counter1 === 0
+          ? alert('Select at max 3 cards to change 1')
+          : alert('Player1 cards changed')
+        : state.counter2 === 0
+          ? alert('Select at max 3 cards to change 2')
+          : alert('Player2 cards changed');
+      changeSelected(state, action.payload.id);
       return state;
     default:
       return state;
@@ -62,3 +69,9 @@ const reducer = (state = {}, action) => {
 };
 
 export default reducer;
+
+const changeSelected = (state, id) => {
+  const counter = id === 1 ? state.counter1 : state.counter2;
+  console.log(counter);
+  // const { cards: hand1, restCards } = getNCardsAndRest(deck, 5, 0);
+};
