@@ -28,20 +28,14 @@ const reducer = (state = {}, action) => {
           ...state,
           hand1: {
             ...state.hand1,
-            cards: state.hand1.cards.map((el) => {
-              if (el.id === action.payload.id) return { ...el, toggled: !el.toggled };
-              return el;
-            }),
+            cards: state.hand1.cards.map(el => (el.id === action.payload.id ? { ...el, toggled: !el.toggled } : { ...el })),
           },
         }
         : {
           ...state,
           hand2: {
             ...state.hand2,
-            cards: state.hand2.cards.map((el) => {
-              if (el.id === action.payload.id) return { ...el, toggled: !el.toggled };
-              return el;
-            }),
+            cards: state.hand2.cards.map(el => (el.id === action.payload.id ? { ...el, toggled: !el.toggled } : { ...el })),
           },
         };
     case changeCards.type:
@@ -108,5 +102,5 @@ const changeSelected = (state, id) => {
 };
 
 // mhn afhnei kai allo change
-// if se ?
-// random
+// combine
+//
