@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
 import _ from 'lodash';
-import { PlayingCards, PokerHandRate, getNCardsAndRest } from '../../lib/ratings.js';
-import { newCards, toggleCard, changeCards } from '.';
+import { PlayingCards, PokerHandRate, getNCardsAndRest } from '../../lib/ratings';
+import {
+  newCards, toggleCard, changeCards, changeBest,
+} from '.';
+import { changeBestCombination } from '../../lib/change';
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
@@ -65,6 +68,9 @@ const reducer = (state = {}, action) => {
       console.log(state.rest);
       // action.payload.id===1 ?  state.counter1<=3 ? return changeSelected(state, action.payload.id) : return changeSelected(state, action.payload.id);
       return state;
+    case changeBest.type:
+      console.log(changeBestCombination(state.hand2.cards, state.combination2));
+      return state;
     default:
       return state;
   }
@@ -103,4 +109,7 @@ const changeSelected = (state, id) => {
 
 // mhn afhnei kai allo change
 // combine
-//
+// sunarthseis
+// changeSelected se lib
+// index
+// [,is]

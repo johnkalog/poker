@@ -1,4 +1,6 @@
-import { newCards, toggleCard, changeCards } from './actions';
+import {
+  newCards, toggleCard, changeCards, changeBest,
+} from './actions';
 
 const onNewClick = dispatch => ({
   onNewClick: () => {
@@ -18,4 +20,11 @@ const onChangeClick = dispatch => ({
   },
 });
 
-export { onNewClick, onCardClick, onChangeClick };
+const onShowClick = dispatch => ({
+  onShowClick: (id) => {
+    dispatch(changeBest(id));
+  },
+});
+export {
+  onNewClick, onCardClick, onChangeClick, onShowClick,
+};

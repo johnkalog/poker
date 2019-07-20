@@ -30,6 +30,19 @@ const changeCards = id => ({
   },
 });
 
-changeCards.type = 'CHANGE_CARDS';
+changeCards.type = CHANGE_CARDS;
 
-export { newCards, toggleCard, changeCards };
+const CHANGE_BEST = 'CHANGE_BEST';
+
+const changeBest = id => ({
+  type: 'CHANGE_BEST',
+  payload: {
+    id,
+  },
+});
+
+changeBest.type = CHANGE_BEST;
+
+export {
+  newCards, toggleCard, changeCards, changeBest,
+};

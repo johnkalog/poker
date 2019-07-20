@@ -8,6 +8,10 @@
   margin-left: 305px;
 }
 
+.buttons {
+  text-align: center;
+}
+
 .twoHands {
   border-radius: 10%;
   border-style: solid;
@@ -31,10 +35,27 @@
   border: 1px solid white;
   color: white;
   padding: 15px 25px;
-  text-align: center;
   display: inline-block;
   font-size: 16px;
-  margin-left: 683px;
+  margin-left: auto;
+  margin-right: 10px;
+  margin-top: 30px;
+  cursor: pointer;
+  outline: none;
+}
+
+.showWinner {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  border-color: white;
+  border-radius: 39%;
+  background-color: Transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 15px 25px;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-right: auto;
   margin-top: 30px;
   cursor: pointer;
   outline: none;
