@@ -65,12 +65,28 @@ const reducer = (state = {}, action) => {
         alert('Player2 cards changed');
         return changeSelected(state, action.payload.id);
       }
-      console.log(state.rest);
+      // console.log(state.rest);
       // action.payload.id===1 ?  state.counter1<=3 ? return changeSelected(state, action.payload.id) : return changeSelected(state, action.payload.id);
       return state;
     case changeBest.type:
-      console.log(changeBestCombination(state.hand2.cards, state.combination2));
-      return state;
+      const { newCards: changeNewCards, combination: newCombination, restCards: newRestCards } = action.payload.id === 1
+        ? changeBestCombination(state.hand1.cards, state.combination1, state.rest)
+        : changeBestCombination(state.hand2.cards, state.combination2, state.rest);
+      return action.payload.id === 1
+        ? {
+          ...state,
+          hand1: { ...changeNewCards },
+          combination1: newCombination,
+          rest: { ...newRestCards },
+        }
+        : {
+          ...state,
+          hand2: { ...changeNewCards },
+          combination2: newCombination,
+          rest: { ...newRestCards },
+        };
+    // changeBestCombination(state.hand1.cards, state.combination1, state.rest);
+    // return state;
     default:
       return state;
   }
@@ -113,3 +129,6 @@ const changeSelected = (state, id) => {
 // changeSelected se lib
 // index
 // [,is]
+// return to combintation
+// function gia chan
+// apo edw lib gia to change
