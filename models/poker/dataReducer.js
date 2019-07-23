@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import _ from 'lodash';
 import { PlayingCards, PokerHandRate, getNCardsAndRest } from '../../lib/ratings';
 import {
@@ -6,7 +5,7 @@ import {
 } from '.';
 import { changeBestCombination } from '../../lib/change';
 
-const reducer = (state = {}, action) => {
+const dataReducer = (state = {}, action) => {
   switch (action.type) {
     case newCards.type:
       const deck = new PlayingCards();
@@ -120,7 +119,7 @@ const reducer = (state = {}, action) => {
   }
 };
 
-export default reducer;
+export default dataReducer;
 
 const changeSelected = (state, id) => {
   const counter = id === 1 ? state.counter1 : state.counter2;
@@ -134,23 +133,16 @@ const changeSelected = (state, id) => {
     ? {
       hand1: newHand,
       combination1: newCombination,
-      rest: {
-        ...restCards,
-      },
+      restCards,
     }
     : {
       hand2: newHand,
       combination2: newCombination,
-      counter2: 0,
-      rest: {
-        ...restCards,
-      },
-      change: true,
+      restCards,
     };
 };
 
 // mhn afhnei kai allo show
-// combine
 // changeSelected se lib
 // index
 // [,is]

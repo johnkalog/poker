@@ -10,7 +10,7 @@ import {
 export const Game = ({
   hand1, hand2, onNewClick, onShowClick,
 }) => {
-  console.log(hand1, hand2);
+  // console.log(hand1, hand2);
   const winner = determineWinner(hand1, hand2);
   const message = winner ? `Winner is ${winner}!` : 'Draw!';
   // chan

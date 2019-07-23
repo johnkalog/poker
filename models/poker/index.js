@@ -7,7 +7,8 @@ import {
 import {
   hand1, hand2, cards, comb,
 } from './selectors';
-import reducer from './reducer';
+import dataReducer from './dataReducer';
+import showReducer from './showReducer';
 
 export {
   newCards, toggleCard, changeCards, changeBest,
@@ -18,4 +19,4 @@ export {
 export {
   hand1, hand2, cards, comb,
 };
-export { reducer };
+export { dataReducer, showReducer };
