@@ -7,6 +7,7 @@ import {
 import {
   hand1, hand2, cards, comb,
 } from './selectors';
+import reducer from './reducer';
 
 export {
   newCards, toggleCard, changeCards, changeBest,
@@ -17,3 +18,4 @@ export {
 export {
   hand1, hand2, cards, comb,
 };
+export { reducer };

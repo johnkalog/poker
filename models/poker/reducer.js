@@ -15,6 +15,7 @@ const reducer = (state = {}, action) => {
       const [combination1, combination2] = [PokerHandRate(hand1), PokerHandRate(hand2)];
       const counter1 = 0;
       const counter2 = 0;
+      const change = false;
       return {
         hand1,
         combination1,
@@ -23,6 +24,7 @@ const reducer = (state = {}, action) => {
         combination2,
         counter2,
         rest,
+        change,
       };
     case toggleCard.type:
       // const { hand, id } = toggleCard().payload;  gia apofygh tou toggleCard().paylod polles fores
@@ -42,28 +44,31 @@ const reducer = (state = {}, action) => {
           },
         };
     case changeCards.type:
-      action.payload.id === 1
-        ? ((state.counter1 = 0),
-        state.hand1.cards.forEach((el) => {
-          if (el.toggled === true) state.counter1++;
-        }))
-        : ((state.counter2 = 0),
-        state.hand2.cards.forEach((el) => {
-          if (el.toggled === true) state.counter2++;
-        }));
-      const r = 1;
-      if (action.payload.id === 1) {
-        if (state.counter1 === 0) alert('Select at max 3 cards to change 1');
-        else if (state.counter1 > 3) alert(`You selected ${state.counter1} cards.Please select max 3 1`);
+      if (!state.change) {
+        action.payload.id === 1
+          ? ((state.counter1 = 0),
+          state.hand1.cards.forEach((el) => {
+            if (el.toggled === true) state.counter1++;
+          }))
+          : ((state.counter2 = 0),
+          state.hand2.cards.forEach((el) => {
+            if (el.toggled === true) state.counter2++;
+          }));
+        const r = 1;
+        if (action.payload.id === 1) {
+          if (state.counter1 === 0) alert('Select at max 3 cards to change 1');
+          else if (state.counter1 > 3) alert(`You selected ${state.counter1} cards.Please select max 3 1`);
+          else {
+            // alert('Player1 cards changed');
+            return changeSelected(state, action.payload.id);
+          }
+        } else if (state.counter2 === 0) alert('Select at max 3 cards to change 2');
+        else if (state.counter2 > 3) alert(`You selected ${state.counter2} cards.Please select max 3 2`);
         else {
-          alert('Player1 cards changed');
+          // alert('Player2 cards changed');
           return changeSelected(state, action.payload.id);
         }
-      } else if (state.counter2 === 0) alert('Select at max 3 cards to change 2');
-      else if (state.counter2 > 3) alert(`You selected ${state.counter2} cards.Please select max 3 2`);
-      else {
-        alert('Player2 cards changed');
-        return changeSelected(state, action.payload.id);
+        return state;
       }
       // console.log(state.rest);
       // action.payload.id===1 ?  state.counter1<=3 ? return changeSelected(state, action.payload.id) : return changeSelected(state, action.payload.id);
@@ -111,6 +116,7 @@ const changeSelected = (state, id) => {
       rest: {
         ...restCards,
       },
+      change: true,
     }
     : {
       ...state,
@@ -120,15 +126,13 @@ const changeSelected = (state, id) => {
       rest: {
         ...restCards,
       },
+      change: true,
     };
 };
 
 // mhn afhnei kai allo change
 // combine
-// sunarthseis
 // changeSelected se lib
 // index
 // [,is]
-// return to combintation
 // function gia chan
-// apo edw lib gia to change

@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import reducer from '../models/poker/reducer';
+import { reducer } from '../models/poker';
 
 const store = createStore(
   reducer,

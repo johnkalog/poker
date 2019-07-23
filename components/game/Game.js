@@ -10,6 +10,7 @@ import {
 export const Game = ({
   hand1, hand2, onNewClick, onShowClick,
 }) => {
+  console.log(hand1, hand2);
   const winner = determineWinner(hand1, hand2);
   const message = winner ? `Winner is ${winner}!` : 'Draw!';
   // chan
@@ -19,7 +20,7 @@ export const Game = ({
         <button className="newGame" onClick={() => onNewClick()}>
           New Game
         </button>
-        <button className="showWinner" onClick={() => onShowClick(2)}>
+        <button className="showWinner" onClick={() => onShowClick(1)}>
           Show Winner
         </button>
       </div>
