@@ -54,19 +54,42 @@ const reducer = (state = {}, action) => {
           state.hand2.cards.forEach((el) => {
             if (el.toggled === true) state.counter2++;
           }));
-        const r = 1;
         if (action.payload.id === 1) {
           if (state.counter1 === 0) alert('Select at max 3 cards to change 1');
           else if (state.counter1 > 3) alert(`You selected ${state.counter1} cards.Please select max 3 1`);
           else {
             // alert('Player1 cards changed');
-            return changeSelected(state, action.payload.id);
+            const {
+              hand1: newHand,
+              combination1: newCombination,
+              restCards: newRestCards,
+            } = changeSelected(state, action.payload.id);
+            return {
+              ...state,
+              hand1: newHand,
+              combination1: newCombination,
+              counter1: 0,
+              rest: newRestCards,
+              change: true,
+            };
           }
         } else if (state.counter2 === 0) alert('Select at max 3 cards to change 2');
         else if (state.counter2 > 3) alert(`You selected ${state.counter2} cards.Please select max 3 2`);
         else {
           // alert('Player2 cards changed');
-          return changeSelected(state, action.payload.id);
+          const {
+            hand2: newHand,
+            combination2: newCombination,
+            restCards: newRestCards,
+          } = changeSelected(state, action.payload.id);
+          return {
+            ...state,
+            hand2: newHand,
+            combination2: newCombination,
+            counter2: 0,
+            rest: newRestCards,
+            change: true,
+          };
         }
         return state;
       }
@@ -109,17 +132,13 @@ const changeSelected = (state, id) => {
   const newCombination = PokerHandRate(newHand);
   return id === 1
     ? {
-      ...state,
       hand1: newHand,
       combination1: newCombination,
-      counter1: 0,
       rest: {
         ...restCards,
       },
-      change: true,
     }
     : {
-      ...state,
       hand2: newHand,
       combination2: newCombination,
       counter2: 0,
@@ -130,7 +149,7 @@ const changeSelected = (state, id) => {
     };
 };
 
-// mhn afhnei kai allo change
+// mhn afhnei kai allo show
 // combine
 // changeSelected se lib
 // index
