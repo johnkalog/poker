@@ -70,8 +70,8 @@ const reducer = (state = {}, action) => {
       return state;
     case changeBest.type:
       const { newCards: changeNewCards, combination: newCombination, restCards: newRestCards } = action.payload.id === 1
-        ? changeBestCombination(state.hand1.cards, state.combination1, state.rest)
-        : changeBestCombination(state.hand2.cards, state.combination2, state.rest);
+        ? changeBestCombination(state.hand1, state.combination1, state.rest)
+        : changeBestCombination(state.hand2, state.combination2, state.rest);
       return action.payload.id === 1
         ? {
           ...state,
