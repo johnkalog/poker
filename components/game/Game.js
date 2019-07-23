@@ -4,11 +4,11 @@ import Hand from './hand/index'; // gia auto index
 import { determineWinner } from '../../lib/comparison';
 import './game.css';
 import {
-  onNewClick, onShowClick, hand1, hand2,
+  onNewClick, onShowClick, hand1, hand2, show,
 } from '../../models/poker';
 
 export const Game = ({
-  hand1, hand2, onNewClick, onShowClick,
+  hand1, hand2, show, onNewClick, onShowClick,
 }) => {
   // console.log(hand1, hand2);
   const winner = determineWinner(hand1, hand2);
@@ -37,6 +37,7 @@ export default connect(
   state => ({
     ...hand1(state),
     ...hand2(state),
+    ...show(state),
   }),
   dispatch => ({
     ...onNewClick(dispatch),

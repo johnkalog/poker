@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux';
-import { dataReducer, showReducer } from '../models/poker';
+import { dataReducer } from '../models/poker';
 
 const store = createStore(
-  combineReducers({ data: dataReducer, show: showReducer }),
+  dataReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 

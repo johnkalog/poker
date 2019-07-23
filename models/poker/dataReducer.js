@@ -15,6 +15,7 @@ const dataReducer = (state = {}, action) => {
       const counter1 = 0;
       const counter2 = 0;
       const change = false;
+      const show = false;
       return {
         hand1,
         combination1,
@@ -24,6 +25,7 @@ const dataReducer = (state = {}, action) => {
         counter2,
         rest,
         change,
+        show,
       };
     case toggleCard.type:
       // const { hand, id } = toggleCard().payload;  gia apofygh tou toggleCard().paylod polles fores
@@ -96,22 +98,29 @@ const dataReducer = (state = {}, action) => {
       // action.payload.id===1 ?  state.counter1<=3 ? return changeSelected(state, action.payload.id) : return changeSelected(state, action.payload.id);
       return state;
     case changeBest.type:
-      const { newCards: changeNewCards, combination: newCombination, restCards: newRestCards } = action.payload.id === 1
-        ? changeBestCombination(state.hand1, state.combination1, state.rest)
-        : changeBestCombination(state.hand2, state.combination2, state.rest);
-      return action.payload.id === 1
-        ? {
-          ...state,
-          hand1: { ...changeNewCards },
-          combination1: newCombination,
-          rest: { ...newRestCards },
-        }
-        : {
-          ...state,
-          hand2: { ...changeNewCards },
-          combination2: newCombination,
-          rest: { ...newRestCards },
-        };
+      if (!state.show) {
+        const { newCards: changeNewCards, combination: newCombination, restCards: newRestCards } = action.payload.id === 1
+          ? changeBestCombination(state.hand1, state.combination1, state.rest)
+          : changeBestCombination(state.hand2, state.combination2, state.rest);
+        return action.payload.id === 1
+          ? {
+            ...state,
+            hand1: { ...changeNewCards },
+            combination1: newCombination,
+            rest: { ...newRestCards },
+            change: true,
+            show: true,
+          }
+          : {
+            ...state,
+            hand2: { ...changeNewCards },
+            combination2: newCombination,
+            rest: { ...newRestCards },
+            change: true,
+            show: true,
+          };
+      }
+      return state;
     // changeBestCombination(state.hand1.cards, state.combination1, state.rest);
     // return state;
     default:

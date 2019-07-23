@@ -2,11 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Card from './card/index'; // ta . sto telos
 import './hand.css';
-import { cards, comb, onChangeClick } from '../../../models/poker';
+import {
+  cards, comb, show, onChangeClick,
+} from '../../../models/poker';
 
 export const Hand = ({
-  cards, id, comb, onChangeClick,
+  cards, id, comb, show, onChangeClick,
 }) => {
+  const combination = show ? comb : '        ';
   const but = id !== 1 ? (
     <button className="change" onClick={() => onChangeClick(id)}>
         Change
@@ -17,7 +20,7 @@ export const Hand = ({
   return (
     <div className="playingCards simpleCards rotateHand">
       <ul className="table">
-        <div className="rate">{comb}</div>
+        <div className="rate">{combination}</div>
         <div className="id">
           {'       '}
           {id}
@@ -42,6 +45,7 @@ export default connect(
     id: ownProps.id,
     ...cards(state, ownProps),
     ...comb(state, ownProps),
+    ...show(state),
   }),
   dispatch => ({
     ...onChangeClick(dispatch),

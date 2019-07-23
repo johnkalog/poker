@@ -5,7 +5,7 @@ import {
   onNewClick, onCardClick, onChangeClick, onShowClick,
 } from './dispatchHandlers';
 import {
-  hand1, hand2, cards, comb,
+  hand1, hand2, cards, comb, show,
 } from './selectors';
 import dataReducer from './dataReducer';
 import showReducer from './showReducer';
@@ -17,6 +17,6 @@ export {
   onNewClick, onCardClick, onChangeClick, onShowClick,
 };
 export {
-  hand1, hand2, cards, comb,
+  hand1, hand2, cards, comb, show,
 };
 export { dataReducer, showReducer };
