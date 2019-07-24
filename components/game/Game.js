@@ -12,7 +12,7 @@ export const Game = ({
 }) => {
   // console.log(hand1, hand2);
   const winner = determineWinner(hand1, hand2);
-  const message = winner ? `Winner is ${winner}!` : 'Draw!';
+  const message = show ? (winner ? `Winner is ${winner}!` : 'Draw!') : '';
   // chan
   return (
     <div>
