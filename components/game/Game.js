@@ -31,10 +31,10 @@ export const Game = ({
   const message = show
     ? roundCounter == 7
       ? score1 > score2
-        ? 'Final Winner is 1'
+        ? 'Final Winner is 1!'
         : score1 < score2
-          ? 'Final Winner is 2'
-          : 'Final Draw'
+          ? 'Final Winner is 2!'
+          : 'Final Draw!'
       : winner
         ? `Winner is ${winner}!`
         : 'Draw!'
