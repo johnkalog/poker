@@ -6,19 +6,28 @@ import {
 import { changeBestCombination } from '../../lib/change';
 
 const dataReducer = (state = {}, action) => {
+  let hand1;
+  let combination1;
+  let counter1;
+  let score1;
+  let hand2;
+  let combination2;
+  let counter2;
+  let score2;
+  let rest;
+  let change;
+  let show;
+  let roundCounter;
   switch (action.type) {
     case newCards.type:
-      const deck = new PlayingCards();
-      const { cards: hand1, restCards } = getNCardsAndRest(deck, 5, 0);
-      const { cards: hand2, restCards: rest } = getNCardsAndRest(restCards, 5, 0);
-      const [combination1, combination2] = [PokerHandRate(hand1), PokerHandRate(hand2)];
-      const counter1 = 0;
-      const counter2 = 0;
-      const score1 = 0;
-      const score2 = 0;
-      const change = false;
-      const show = false;
-      const roundCounter = 0;
+      ({
+        hand1, combination1, counter1, hand2, combination2, counter2, rest, change, show,
+      } = {
+        ...newInfo(),
+      });
+      score1 = 0;
+      score2 = 0;
+      roundCounter = 0;
       return {
         hand1,
         combination1,
@@ -34,7 +43,25 @@ const dataReducer = (state = {}, action) => {
         roundCounter,
       };
     case newRound.type:
-      return { ...state, roundCounter: ++state.roundCounter };
+      ({
+        hand1, combination1, counter1, hand2, combination2, counter2, rest, change, show,
+      } = {
+        ...newInfo(),
+      });
+      return {
+        hand1,
+        combination1,
+        counter1,
+        score1: 0,
+        hand2,
+        combination2,
+        counter2,
+        score2: 0,
+        rest,
+        change,
+        show,
+        roundCounter: ++state.roundCounter,
+      };
     case toggleCard.type:
       // const { hand, id } = toggleCard().payload;  gia apofygh tou toggleCard().paylod polles fores
       return action.payload.hand === 1
@@ -159,8 +186,26 @@ const changeSelected = (state, id) => {
     };
 };
 
-// mhn afhnei kai allo show
-// changeSelected se lib
-// index
-// [,is]
-// function gia chan
+const newInfo = () => {
+  const deck = new PlayingCards();
+  const { cards: hand1, restCards } = getNCardsAndRest(deck, 5, 0);
+  const { cards: hand2, restCards: rest } = getNCardsAndRest(restCards, 5, 0);
+  const [combination1, combination2] = [PokerHandRate(hand1), PokerHandRate(hand2)];
+  const counter1 = 0;
+  const counter2 = 0;
+  const change = false;
+  const show = false;
+  return {
+    hand1,
+    combination1,
+    counter1,
+    hand2,
+    combination2,
+    counter2,
+    rest,
+    change,
+    show,
+  };
+};
+
+// ( destructuring
