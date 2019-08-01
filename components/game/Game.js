@@ -28,7 +28,17 @@ export const Game = ({
 }) => {
   // console.log(hand1, hand2);
   const winner = determineWinner(hand1, hand2);
-  const message = show ? (winner ? `Winner is ${winner}!` : 'Draw!') : '';
+  const message = show
+    ? roundCounter == 7
+      ? score1 > score2
+        ? 'Final Winner is 1'
+        : score1 < score2
+          ? 'Final Winner is 2'
+          : 'Final Draw'
+      : winner
+        ? `Winner is ${winner}!`
+        : 'Draw!'
+    : '';
   // chan
   return (
     <div>

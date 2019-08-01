@@ -19,6 +19,7 @@ const dataReducer = (state = {}, action) => {
   let change;
   let show;
   let roundCounter;
+  let nextRound; // mporei na ksanapathsei newRound mono meta show
   switch (action.type) {
     case newCards.type:
       ({
@@ -28,7 +29,8 @@ const dataReducer = (state = {}, action) => {
       });
       score1 = 0;
       score2 = 0;
-      roundCounter = 0;
+      roundCounter = 1;
+      nextRound = false;
       return {
         hand1,
         combination1,
@@ -42,27 +44,31 @@ const dataReducer = (state = {}, action) => {
         change,
         show,
         roundCounter,
+        nextRound,
       };
     case newRound.type:
-      ({
-        hand1, combination1, counter1, hand2, combination2, counter2, rest, change, show,
-      } = {
-        ...newInfo(),
-      });
-      return {
-        hand1,
-        combination1,
-        counter1,
-        score1: state.score1 + handScore(combination1),
-        hand2,
-        combination2,
-        counter2,
-        score2: state.score2 + handScore(combination2),
-        rest,
-        change,
-        show,
-        roundCounter: ++state.roundCounter,
-      };
+      if (state.nextRound && state.roundCounter < 7) {
+        ({
+          hand1, combination1, counter1, hand2, combination2, counter2, rest, change, show,
+        } = {
+          ...newInfo(),
+        });
+        return {
+          ...state,
+          hand1,
+          combination1,
+          counter1,
+          hand2,
+          combination2,
+          counter2,
+          rest,
+          change,
+          show,
+          roundCounter: ++state.roundCounter,
+          nextRound: false,
+        };
+      }
+      return state;
     case toggleCard.type:
       // const { hand, id } = toggleCard().payload;  gia apofygh tou toggleCard().paylod polles fores
       return action.payload.hand === 1
@@ -143,17 +149,23 @@ const dataReducer = (state = {}, action) => {
             ...state,
             hand1: { ...changeNewCards },
             combination1: newCombination,
+            score1: state.score1 + handScore(state.combination1),
+            score2: state.score2 + handScore(state.combination2),
             rest: { ...newRestCards },
             change: true,
             show: true,
+            nextRound: true,
           }
           : {
             ...state,
             hand2: { ...changeNewCards },
             combination2: newCombination,
+            score1: state.score1 + handScore(state.combination1),
+            score2: state.score2 + handScore(state.combination2),
             rest: { ...newRestCards },
             change: true,
             show: true,
+            nextRound: true,
           };
       }
       return state;
