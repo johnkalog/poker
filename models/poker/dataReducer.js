@@ -4,6 +4,7 @@ import {
   newCards, newRound, toggleCard, changeCards, changeBest,
 } from '.';
 import { changeBestCombination } from '../../lib/change';
+import handScore from '../../lib/scores';
 
 const dataReducer = (state = {}, action) => {
   let hand1;
@@ -52,11 +53,11 @@ const dataReducer = (state = {}, action) => {
         hand1,
         combination1,
         counter1,
-        score1: 0,
+        score1: state.score1 + handScore(combination1),
         hand2,
         combination2,
         counter2,
-        score2: 0,
+        score2: state.score2 + handScore(combination2),
         rest,
         change,
         show,
