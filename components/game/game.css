@@ -10,6 +10,7 @@
 
 .buttons {
   text-align: center;
+  margin-right: 439px;
 }
 
 .twoHands {
@@ -38,6 +39,23 @@
   display: inline-block;
   font-size: 16px;
   margin-left: auto;
+  margin-right: 270px;
+  margin-top: 30px;
+  cursor: pointer;
+  outline: none;
+}
+
+.newRound {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  border-color: white;
+  border-radius: 39%;
+  background-color: Transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 15px 25px;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 37px;
   margin-right: 10px;
   margin-top: 30px;
   cursor: pointer;
@@ -59,4 +77,14 @@
   margin-top: 30px;
   cursor: pointer;
   outline: none;
+}
+
+.value {
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  font-size: 19px;
+  color: white;
+}
+
+.slist li{
+  display: inline;
 }

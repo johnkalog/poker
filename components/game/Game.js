@@ -20,6 +20,9 @@ export const Game = ({
         <button className="newGame" onClick={() => onNewClick()}>
           New Game
         </button>
+        <button className="newRound" onClick={() => onNewClick()}>
+          New Round
+        </button>
         <button className="showWinner" onClick={() => onShowClick(1)}>
           Show Winner
         </button>

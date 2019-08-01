@@ -39,7 +39,8 @@
   text-align: center;
   display: inline-block;
   font-size: 16px;
-  margin-left: 159px;
+  margin-left: 163px;
+  margin-right: -16px;
   margin-top: 30px;
   cursor: pointer;
   outline: none;
