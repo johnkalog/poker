@@ -5,6 +5,7 @@ import {
 } from '.';
 import { changeBestCombination } from '../../lib/change';
 import handScore from '../../lib/scores';
+import newInfo from '../../lib/hands';
 
 const dataReducer = (state = {}, action) => {
   let hand1;
@@ -99,7 +100,7 @@ const dataReducer = (state = {}, action) => {
           }));
         if (action.payload.id === 1) {
           if (state.counter1 === 0) alert('Select at max 3 cards to change 1');
-          else if (state.counter1 > 3) alert(`You selected ${state.counter1} cards.Please select max 3 1`);
+          else if (state.counter1 > 3) alert(`You selected ${state.counter1} cards.Please select max 3`);
           else {
             // alert('Player1 cards changed');
             const {
@@ -117,7 +118,7 @@ const dataReducer = (state = {}, action) => {
             };
           }
         } else if (state.counter2 === 0) alert('Select at max 3 cards to change 2');
-        else if (state.counter2 > 3) alert(`You selected ${state.counter2} cards.Please select max 3 2`);
+        else if (state.counter2 > 3) alert(`You selected ${state.counter2} cards.Please select max 3`);
         else {
           // alert('Player2 cards changed');
           const {
@@ -136,8 +137,6 @@ const dataReducer = (state = {}, action) => {
         }
         return state;
       }
-      // console.log(state.rest);
-      // action.payload.id===1 ?  state.counter1<=3 ? return changeSelected(state, action.payload.id) : return changeSelected(state, action.payload.id);
       return state;
     case changeBest.type:
       if (!state.show) {
@@ -169,8 +168,6 @@ const dataReducer = (state = {}, action) => {
           };
       }
       return state;
-    // changeBestCombination(state.hand1.cards, state.combination1, state.rest);
-    // return state;
     default:
       return state;
   }
@@ -197,28 +194,6 @@ const changeSelected = (state, id) => {
       combination2: newCombination,
       restCards,
     };
-};
-
-const newInfo = () => {
-  const deck = new PlayingCards();
-  const { cards: hand1, restCards } = getNCardsAndRest(deck, 5, 0);
-  const { cards: hand2, restCards: rest } = getNCardsAndRest(restCards, 5, 0);
-  const [combination1, combination2] = [PokerHandRate(hand1), PokerHandRate(hand2)];
-  const counter1 = 0;
-  const counter2 = 0;
-  const change = false;
-  const show = false;
-  return {
-    hand1,
-    combination1,
-    counter1,
-    hand2,
-    combination2,
-    counter2,
-    rest,
-    change,
-    show,
-  };
 };
 
 // ( destructuring

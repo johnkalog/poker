@@ -28,7 +28,7 @@ export const Hand = ({
         </div>
         {cards.map((
           el,
-          index, // poia dunstions sto dispatch
+          index,
         ) => (
           <li key={index}>
             <Card hand={id} el={el} />

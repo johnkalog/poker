@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getEntity } from '../../../../lib/reactFunctions'; // oxi sto idio epipedo onoma mono tote h katalhjh
+import { getEntity } from '../../../../lib/reactFunctions';
 import './cards.css';
 import { show, onCardClick } from '../../../../models/poker';
 
