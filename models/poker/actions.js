@@ -9,6 +9,14 @@ const newCards = () => ({
 
 newCards.type = NEW_CARDS;
 
+const NEW_ROUND = 'NEW_ROUND';
+
+const newRound = () => ({
+  type: 'NEW_ROUND',
+});
+
+newRound.type = NEW_ROUND;
+
 const TOGGLE_CARD = 'TOGGLE_CARD';
 
 const toggleCard = (hand, id) => ({
@@ -44,5 +52,5 @@ const changeBest = id => ({
 changeBest.type = CHANGE_BEST;
 
 export {
-  newCards, toggleCard, changeCards, changeBest,
+  newCards, newRound, toggleCard, changeCards, changeBest,
 };

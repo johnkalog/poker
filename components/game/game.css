@@ -85,6 +85,6 @@
   color: white;
 }
 
-.slist li{
-  display: inline;
+.scores {
+  margin-left: 10px;
 }

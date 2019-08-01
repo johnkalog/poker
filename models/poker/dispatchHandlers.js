@@ -1,10 +1,16 @@
 import {
-  newCards, toggleCard, changeCards, changeBest,
+  newCards, newRound, toggleCard, changeCards, changeBest,
 } from './actions';
 
 const onNewClick = dispatch => ({
   onNewClick: () => {
     dispatch(newCards());
+  },
+});
+
+const onRoundClick = dispatch => ({
+  onRoundClick: () => {
+    dispatch(newRound());
   },
 });
 
@@ -25,6 +31,7 @@ const onShowClick = dispatch => ({
     dispatch(changeBest(id));
   },
 });
+
 export {
-  onNewClick, onCardClick, onChangeClick, onShowClick,
+  onNewClick, onRoundClick, onCardClick, onChangeClick, onShowClick,
 };

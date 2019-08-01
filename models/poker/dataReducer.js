@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { PlayingCards, PokerHandRate, getNCardsAndRest } from '../../lib/ratings';
 import {
-  newCards, toggleCard, changeCards, changeBest,
+  newCards, newRound, toggleCard, changeCards, changeBest,
 } from '.';
 import { changeBestCombination } from '../../lib/change';
 
@@ -14,19 +14,27 @@ const dataReducer = (state = {}, action) => {
       const [combination1, combination2] = [PokerHandRate(hand1), PokerHandRate(hand2)];
       const counter1 = 0;
       const counter2 = 0;
+      const score1 = 0;
+      const score2 = 0;
       const change = false;
       const show = false;
+      const roundCounter = 0;
       return {
         hand1,
         combination1,
         counter1, // to check if over 3 for change
+        score1,
         hand2,
         combination2,
         counter2,
+        score2,
         rest,
         change,
         show,
+        roundCounter,
       };
+    case newRound.type:
+      return { ...state, roundCounter: ++state.roundCounter };
     case toggleCard.type:
       // const { hand, id } = toggleCard().payload;  gia apofygh tou toggleCard().paylod polles fores
       return action.payload.hand === 1
