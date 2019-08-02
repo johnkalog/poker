@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {
   newCards, newRound, toggleCard, changeCards, changeBest,
-} from '.';
+} from './actions';
 import { changeBestCombination } from '../../lib/change';
 import handScore from '../../lib/scores';
 import newInfo from '../../lib/hands';
@@ -110,3 +110,9 @@ export default dataReducer;
 // notifications array state
 // changeSelected se lib
 // sto state oti eksartatai apo prohgoumeno action
+// kathe fakelo einai meros tou state
+// react best project structures redux
+// destructure se perissotera apo ena
+// models game player opponent
+// reducers.js kanei combne
+// import apo allon

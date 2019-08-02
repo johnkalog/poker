@@ -1,3 +1,5 @@
+// handlers
+
 import {
   newCards, newRound, toggleCard, changeCards, changeBest,
 } from './actions';
